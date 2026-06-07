@@ -1,0 +1,82 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    box-sizing: border-box;
+  }
+  body {
+    font-family: 'Inter', system-ui, sans-serif;
+    background-color: #0f172a;
+    color: #f8fafc;
+  }
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    background: #1e293b;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #475569;
+    border-radius: 3px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: #6366f1;
+  }
+}
+
+@layer components {
+  .card {
+    @apply bg-slate-800 border border-slate-700 rounded-xl p-5 shadow-lg;
+  }
+  .card-hover {
+    @apply card transition-all duration-200 hover:border-slate-600 hover:shadow-xl hover:-translate-y-0.5;
+  }
+  .btn-primary {
+    @apply bg-indigo-600 hover:bg-indigo-500 text-white font-medium px-4 py-2 rounded-lg
+           transition-all duration-150 disabled:opacity-50 disabled:cursor-not-allowed
+           flex items-center gap-2;
+  }
+  .btn-secondary {
+    @apply bg-slate-700 hover:bg-slate-600 text-slate-200 font-medium px-4 py-2 rounded-lg
+           transition-all duration-150 flex items-center gap-2;
+  }
+  .badge {
+    @apply inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium;
+  }
+  .badge-green  { @apply badge bg-emerald-900/50 text-emerald-300 border border-emerald-700/50; }
+  .badge-yellow { @apply badge bg-amber-900/50 text-amber-300 border border-amber-700/50; }
+  .badge-red    { @apply badge bg-red-900/50 text-red-300 border border-red-700/50; }
+  .badge-blue   { @apply badge bg-indigo-900/50 text-indigo-300 border border-indigo-700/50; }
+  .badge-gray   { @apply badge bg-slate-700 text-slate-300 border border-slate-600; }
+
+  .section-title {
+    @apply text-lg font-semibold text-slate-100 mb-4 flex items-center gap-2;
+  }
+  .label {
+    @apply text-xs font-medium text-slate-400 uppercase tracking-wider;
+  }
+  .input {
+    @apply w-full bg-slate-900 border border-slate-700 rounded-lg px-4 py-3 text-slate-100
+           placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-indigo-500
+           focus:border-indigo-500 transition-colors resize-none;
+  }
+}
+
+.score-pass   { color: #10b981; }
+.score-warn   { color: #f59e0b; }
+.score-fail   { color: #ef4444; }
+
+.animate-fade-in  { animation: fadeIn 0.4s ease-out; }
+.animate-slide-up { animation: slideUp 0.4s ease-out; }
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}

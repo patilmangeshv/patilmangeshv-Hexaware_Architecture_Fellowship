@@ -1,0 +1,9 @@
+# Copilot: Build an Compliance Knowledge Agent for A regional bank wants compliance officers to ask natural-language questions against,
+# 1. Load documents from internal policy documents, 800 regulatory bulletins, and the last 18 months of audit findings and chunk at 512 tokens
+# 2. Embed with BAAI/bge-small-en-v1.5, store in ChromaDB
+# 3. On each question: retrieve top-20 chunks, rerank with
+#    bge-reranker-base, keep top-5
+# 4. Call Gemini with the top-5 chunks as context
+#    — response must include the source document name
+# 5. If confidence < 0.75, return an escalation message instead
+# Output: { answer, source, confidence, escalated }

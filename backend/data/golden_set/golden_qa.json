@@ -1,0 +1,62 @@
+[
+  {
+    "id": "q001",
+    "question": "What are the minimum KYC requirements for onboarding a new retail customer?",
+    "ground_truth": "The KYC policy requires government-issued photo ID, proof of residential address not older than 3 months, and a source of funds declaration. Enhanced due diligence applies to politically exposed persons and high-risk customers requiring additional identity verification steps.",
+    "context_type": "Policy"
+  },
+  {
+    "id": "q002",
+    "question": "What AML transaction red flags should trigger a suspicious activity report?",
+    "ground_truth": "AML red flags include structuring transactions below reporting thresholds, rapid movement of funds through accounts with no business rationale, transactions inconsistent with the customer's established profile, use of multiple accounts to obscure the money trail, and requests by customers to avoid documentation or reporting.",
+    "context_type": "Policy"
+  },
+  {
+    "id": "q003",
+    "question": "What were the major audit findings identified in Q1 2025?",
+    "ground_truth": "The Q1 2025 audit identified gaps in AML transaction monitoring thresholds that were below regulatory minimums, incomplete KYC refresh cycles for high-risk customers overdue by more than 90 days, and deficiencies in IT privileged access control reviews for critical banking systems.",
+    "context_type": "Audit"
+  },
+  {
+    "id": "q004",
+    "question": "What are the data retention requirements under the Data Privacy Policy?",
+    "ground_truth": "Customer data must be retained for a minimum of 7 years following account closure in line with regulatory requirements. Special categories of personal data require additional safeguards including encryption at rest. Data must be securely and irreversibly destroyed after the mandatory retention period expires.",
+    "context_type": "Policy"
+  },
+  {
+    "id": "q005",
+    "question": "What IT security controls are required for privileged access management?",
+    "ground_truth": "The IT Security Policy mandates multi-factor authentication for all privileged accounts, quarterly access reviews by system owners, just-in-time access provisioning to limit standing privileges, and full session recording for all privileged remote access to production systems.",
+    "context_type": "Policy"
+  },
+  {
+    "id": "q006",
+    "question": "What does the January 2025 regulatory bulletin say about transaction monitoring requirements?",
+    "ground_truth": "The January 2025 regulatory bulletin updated transaction monitoring thresholds and required banks to implement real-time screening for high-value transactions above defined monetary limits, with Suspicious Activity Reports to be filed within 30 calendar days of the date suspicion arises.",
+    "context_type": "Regulation"
+  },
+  {
+    "id": "q007",
+    "question": "What are the credit risk concentration limits for large exposures?",
+    "ground_truth": "The Credit Risk Policy limits single-name exposures to 25 percent of Tier 1 capital. Country concentration limits are capped at 30 percent of the total loan portfolio. Sector concentration above 20 percent of portfolio triggers enhanced monitoring and mandatory escalation to the Risk Committee.",
+    "context_type": "Policy"
+  },
+  {
+    "id": "q008",
+    "question": "What critical remediation actions were identified in the Q3 2025 audit?",
+    "ground_truth": "The Q3 2025 audit identified three critical findings requiring immediate remediation: inadequate segregation of duties in the payments processing function, insufficient controls over third-party vendor access to production systems, and material gaps in business continuity and disaster recovery testing documentation.",
+    "context_type": "Audit"
+  },
+  {
+    "id": "q009",
+    "question": "What are the regulatory complaint resolution timelines banks must comply with?",
+    "ground_truth": "Under the regulatory guidelines, banks must acknowledge customer complaints within 5 business days of receipt and provide a final resolution response within 40 business days. Complex complaints requiring extended investigation may be extended beyond 40 days only with written notification and explanation to the customer.",
+    "context_type": "Regulation"
+  },
+  {
+    "id": "q010",
+    "question": "What are the beneficial ownership disclosure requirements under the AML policy?",
+    "ground_truth": "The AML Policy requires identification and verification of all beneficial owners holding 25 percent or more ownership interest in a legal entity customer. Source of wealth must be collected and verified for each beneficial owner. Any changes to beneficial ownership structure must be reported to the bank promptly and subject to fresh due diligence.",
+    "context_type": "Policy"
+  }
+]

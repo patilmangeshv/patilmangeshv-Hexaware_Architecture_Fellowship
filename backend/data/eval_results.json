@@ -1,0 +1,35 @@
+[
+  {
+    "faithfulness": 0.0581,
+    "answer_relevancy": 0.0391,
+    "context_recall": 0.075,
+    "context_precision": 0.0675,
+    "ragas_score": 0.0002,
+    "method": "heuristic",
+    "num_questions": 10,
+    "run_at": "2026-06-07T12:26:41.343720Z",
+    "passed": false
+  },
+  {
+    "faithfulness": 0.0581,
+    "answer_relevancy": 0.0391,
+    "context_recall": 0.075,
+    "context_precision": 0.0675,
+    "ragas_score": 0.0002,
+    "method": "heuristic",
+    "num_questions": 10,
+    "run_at": "2026-06-07T12:29:40.498947Z",
+    "passed": false
+  },
+  {
+    "faithfulness": 0.0512,
+    "answer_relevancy": 0.026,
+    "context_recall": 0.0778,
+    "context_precision": 0.07,
+    "ragas_score": 0.0001,
+    "method": "heuristic",
+    "num_questions": 5,
+    "run_at": "2026-06-07T12:40:12.635942Z",
+    "passed": false
+  }
+]
