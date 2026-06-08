@@ -31,5 +31,60 @@
     "num_questions": 5,
     "run_at": "2026-06-07T12:40:12.635942Z",
     "passed": false
+  },
+  {
+    "faithfulness": 0.0424,
+    "answer_relevancy": 0.026,
+    "context_recall": 0.0758,
+    "context_precision": 0.0682,
+    "ragas_score": 0.0001,
+    "method": "heuristic",
+    "num_questions": 5,
+    "run_at": "2026-06-07T14:51:15.677144Z",
+    "passed": false
+  },
+  {
+    "faithfulness": 0.0444,
+    "answer_relevancy": 0.0163,
+    "context_recall": 0.0743,
+    "context_precision": 0.0669,
+    "ragas_score": 0.0001,
+    "method": "heuristic",
+    "num_questions": 10,
+    "run_at": "2026-06-07T15:39:38.959153Z",
+    "passed": false
+  },
+  {
+    "faithfulness": 0.0444,
+    "answer_relevancy": 0.0163,
+    "context_recall": 0.0743,
+    "context_precision": 0.0669,
+    "ragas_score": 0.0001,
+    "method": "heuristic",
+    "num_questions": 10,
+    "run_at": "2026-06-07T15:43:18.993777Z",
+    "passed": false
+  },
+  {
+    "faithfulness": 0.0444,
+    "answer_relevancy": 0.0163,
+    "context_recall": 0.0743,
+    "context_precision": 0.0669,
+    "ragas_score": 0.0001,
+    "method": "heuristic",
+    "num_questions": 10,
+    "run_at": "2026-06-07T15:46:41.839940Z",
+    "passed": false
+  },
+  {
+    "faithfulness": 0.0424,
+    "answer_relevancy": 0.026,
+    "context_recall": 0.0758,
+    "context_precision": 0.0682,
+    "ragas_score": 0.0001,
+    "method": "heuristic",
+    "num_questions": 5,
+    "run_at": "2026-06-07T15:50:33.061711Z",
+    "passed": false
   }
 ]

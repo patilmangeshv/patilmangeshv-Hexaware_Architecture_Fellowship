@@ -24,7 +24,7 @@ export const getHealth = () => api.get('/health').then((r) => r.data);
 
 // ── RAG Query ─────────────────────────────────────────────────────────────────
 export const postQuery = (question, context = null) =>
-  api.post('/query', { question, context }).then((r) => r.data);
+  api.post('/query', { question, context }, { timeout: 0 }).then((r) => r.data);
 
 // ── Evaluation ────────────────────────────────────────────────────────────────
 export const runEvaluation = () =>

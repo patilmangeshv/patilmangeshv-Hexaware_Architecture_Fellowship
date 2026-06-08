@@ -17,6 +17,7 @@ from __future__ import annotations
 
 import hashlib
 import logging
+import re
 import sys
 import time
 from pathlib import Path
@@ -67,6 +68,66 @@ def chunk_text(text: str, chunk_size: int = 512, overlap: int = 50) -> List[str]
     return chunks
 
 
+def _split_sentences(text: str) -> List[str]:
+    """Simple sentence splitter for semantic chunking."""
+    text = re.sub(r"\s+", " ", text).strip()
+    if not text:
+        return []
+    parts = re.split(r"(?<=[.!?])\s+(?=[A-Z0-9\(\[])", text)
+    return [p.strip() for p in parts if p.strip()]
+
+
+def semantic_chunk_text(
+    text: str,
+    embedder,
+    max_tokens: int = 512,
+    min_tokens: int = 120,
+    similarity_threshold: float = 0.72,
+) -> List[str]:
+    """
+    Semantic chunking by sentence cohesion.
+    Splits when adjacent sentence similarity drops or max token size is reached.
+    """
+    import numpy as np
+    import tiktoken
+
+    sentences = _split_sentences(text)
+    if not sentences:
+        return []
+    if len(sentences) == 1:
+        return [sentences[0]] if len(sentences[0]) > 50 else []
+
+    enc = tiktoken.get_encoding("cl100k_base")
+    sent_vecs = embedder.encode(sentences, normalize_embeddings=True)
+    sent_tokens = [len(enc.encode(s)) for s in sentences]
+
+    chunks: List[str] = []
+    current_sentences: List[str] = [sentences[0]]
+    current_tokens = sent_tokens[0]
+
+    for i in range(1, len(sentences)):
+        sim = float(np.dot(sent_vecs[i - 1], sent_vecs[i]))
+        next_tokens = sent_tokens[i]
+
+        split_for_semantics = sim < similarity_threshold and current_tokens >= min_tokens
+        split_for_size = (current_tokens + next_tokens) > max_tokens
+
+        if split_for_semantics or split_for_size:
+            chunk = " ".join(current_sentences).strip()
+            if len(chunk) > 50:
+                chunks.append(chunk)
+            current_sentences = [sentences[i]]
+            current_tokens = next_tokens
+        else:
+            current_sentences.append(sentences[i])
+            current_tokens += next_tokens
+
+    final_chunk = " ".join(current_sentences).strip()
+    if len(final_chunk) > 50:
+        chunks.append(final_chunk)
+    return chunks
+
+
 def infer_context_type(filename: str) -> str:
     name = filename.lower()
     if any(kw in name for kw in ["audit", "finding"]):
@@ -90,8 +151,11 @@ def ingest(data_dir: str = "./data", chroma_path: str = "./chroma_db") -> dict:
     from backend.config import (
         EMBEDDING_MODEL,
         CHROMA_COLLECTION_NAME,
+        CHUNKING_MODE,
         CHUNK_SIZE,
         CHUNK_OVERLAP,
+        SEMANTIC_SIMILARITY_THRESHOLD,
+        SEMANTIC_MIN_CHUNK_TOKENS,
     )
     import chromadb
     from chromadb.config import Settings
@@ -135,7 +199,16 @@ def ingest(data_dir: str = "./data", chroma_path: str = "./chroma_db") -> dict:
                 log.warning("  ⚠ Empty document — skipping: %s", doc_path.name)
                 continue
 
-            chunks = chunk_text(text, chunk_size=CHUNK_SIZE, overlap=CHUNK_OVERLAP)
+            if CHUNKING_MODE.lower() == "semantic":
+                chunks = semantic_chunk_text(
+                    text,
+                    embedder=embedder,
+                    max_tokens=CHUNK_SIZE,
+                    min_tokens=SEMANTIC_MIN_CHUNK_TOKENS,
+                    similarity_threshold=SEMANTIC_SIMILARITY_THRESHOLD,
+                )
+            else:
+                chunks = chunk_text(text, chunk_size=CHUNK_SIZE, overlap=CHUNK_OVERLAP)
             ctx_type = infer_context_type(doc_path.name)
 
             ids, embeddings, documents, metadatas = [], [], [], []

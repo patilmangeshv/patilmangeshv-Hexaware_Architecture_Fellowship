@@ -21,6 +21,9 @@ RERANKER_MODEL: str = r"C:\Python\local_models\BAAI__bge-reranker-base"
 # ── Chunking Strategy ─────────────────────────────────────────────────────────
 CHUNK_SIZE: int = 512        # tokens (tiktoken cl100k_base)
 CHUNK_OVERLAP: int = 50      # tokens
+CHUNKING_MODE: str = "semantic"   # "semantic" or "token"
+SEMANTIC_SIMILARITY_THRESHOLD: float = 0.72
+SEMANTIC_MIN_CHUNK_TOKENS: int = 120
 
 # ── Retrieval ─────────────────────────────────────────────────────────────────
 TOP_K_RETRIEVE: int = 20     # initial vector search count
